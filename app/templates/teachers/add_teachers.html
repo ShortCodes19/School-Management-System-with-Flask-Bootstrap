@@ -1,0 +1,132 @@
+{% extends "base.html" %} {% block title %}{{ title }} - School Management System{% endblock %} {%
+block content %}
+<main class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>
+        <i class="fas fa-user-graduate mb-3 me-2"></i>
+        {{ title }}
+      </h1>
+    </div>
+    <div class="col-md-4 text-end">
+      <a href="{{ url_for('views.list_teachers') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>
+        Back to Teachers
+      </a>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form action="{{ url_for('views.add_teachers') }}" method="post">
+            <!-- ID Field -->
+            <div class="mb-3">
+              <label for="teacherID" class="form-label">Teacher ID</label>
+              <input type="text" class="form-control" id="teacherID" name="teacherID" />
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" />
+            </div>
+
+            <!-- Name Fields in a row -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" />
+              </div>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" />
+              </div>
+
+              <!-- Address Field -->
+              <div class="col-md-6 mb-3">
+                <label for="department" class="form-label">Department</label>
+                <input class="form-control" id="department" name="department" />
+              </div>
+            </div>
+
+            <!-- Dob & Hire Date -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="hireDate" class="form-label">Hire Date</label>
+                <input type="date" class="form-control" id="hireDate" name="hireDate" />
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="isActive"
+                  name="isActive"
+                  checked />
+                <label class="form-check-label" for="isActive">Active Tachers</label>
+              </div>
+              <div class="form-text">Toggle to set teacher status as active/inactive</div>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="d-flex justify-content-end gap-2">
+              <a href="{{ url_for('views.list_teachers') }}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save me-2"></i>
+                Save Student
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column for additional content -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark-subtle">
+          <h6 class="card-title text-white-50 mb-0">
+            <i class="fas fa-info-circle me-2"></i>
+            Information
+          </h6>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Fill out all required fields to add a new teacher to the system.</p>
+          <p class="card-text">
+            Required fields are marked with an asterisk (
+            <span class="text-danger">*</span>
+            ).
+          </p>
+          <hr />
+          <small class="text-muted">
+            Once saved, the student will appear in the student directory and can be assigned to
+            classes.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
