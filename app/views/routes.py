@@ -53,7 +53,16 @@ def add_students():
 
 @views_bp.route('/students')
 def list_students():
-    students = Student.query.all()
+    search = request.args.get('search')
+    if search:
+        students = Student.query.filter(
+            Student.firstName.contains(search) |
+            Student.lastName.contains(search) |
+            Student.email.contains(search)
+        ).all()
+    else:
+        students = Student.query.all()
+
     return render_template('students/list_students.html', students=students, title='Students List')
 
 @views_bp.route('/update_student/<int:student_id>', methods=['GET', 'POST'])
@@ -158,5 +167,13 @@ def delete_teachers(teacher_id):
 
 @views_bp.route('/list_teachers')
 def list_teachers():
-    teachers = Teacher.query.all()
+    search = request.args.get('search')
+    if search:
+        teachers = Teacher.query.filter(
+            Teacher.firstName.contains(search) |
+            Teacher.lastName.contains(search) |
+            Teacher.email.contains(search)
+        ).all()
+    else:
+        teachers = Teacher.query.all()
     return render_template('teachers/list_teachers.html', teachers=teachers, title='List Teachers')

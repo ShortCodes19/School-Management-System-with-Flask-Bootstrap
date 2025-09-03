@@ -8,11 +8,25 @@ block content %}
         {{ title }}
       </h1>
     </div>
+
     <div class="col-md-6 text-end">
       <a href="{{ url_for('views.add_students') }}" class="btn btn-primary">
         <i class="fas fa-plus me-2"></i>
         Add Student
       </a>
+    </div>
+
+    <div class="col-md-6">
+      <form action="{{ url_for('views.list_students') }}" method="get">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for students..."
+            name="search" />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
     </div>
   </div>
 
